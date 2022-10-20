@@ -1,17 +1,46 @@
-    let addbutton=document.getElementById('add')
-    let storetodo=document.getElementById('storetodos')
-    let input=document.getElementById('input')
+const labelInputfield=document.getElementById('labelValue');
+const form=document.getElementById('form');
+const inputType=document.getElementById('inputType');
+labelInputfield.addEventListener('keyup', (event)=>{
+const keyPressed=event.key;
 
-    addbutton.addEventListener('click',function(){
-        var para=document.createElement('p');
-        para.classList.add('paragraph-styling')
-        para.innerHTML=input.value
-        storetodo.appendChild(para)
-        input.value="";
-        para.addEventListener('click',function(){
-            para.style.textDecoration='line-through'
-        })
-        para.addEventListener('dblclick',function(){
-            storetodo.removeChild(para)
-        })
-    })
+if(keyPressed==='Enter'){
+    //create input fields if user presses enter 
+     const type=inputType.value;
+     const label=labelInputfield.value;
+
+     const labelInput=document.createElement("label");
+     const div=document.createElement("div");
+
+     let input=null;
+     if(type==='textArea')
+     input=document.createElement('textarea')
+     else 
+ input=document.createElement("input");
+     
+     labelInput.innerHTML=label;
+     input.type=type;
+
+
+     input.classList.add('form-control')
+     labelInput.classList.add('form-label');
+     div.classList.add('mb-3')
+
+    
+    
+     if(type=='Submit'){
+        input.classList.add('btn')
+        input.classList.add('btn-success')
+        input.value=label;
+     }
+     else 
+     div.appendChild(labelInput);
+     div.appendChild(input);
+
+     form.appendChild(div);
+
+
+
+}
+})
+
